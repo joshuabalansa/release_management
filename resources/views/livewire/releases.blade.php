@@ -12,10 +12,10 @@
                             <label for="environment" class="sr-only">Site</label>
                             <select id="environment"  wire:model.live="search"
                                     class="block w-full py-2.5 pl-4 pr-10 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg focus:outline-none focus:ring-4 focus:border-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:focus:border-gray-700 dark:text-white">
-                                <option value="">All Site</option>
-                                <option value="Development">Development</option>
-                                <option value="Staging">Staging</option>
-                                <option value="Production">Production</option>
+                                <option value="all">All Site</option>
+                                <option value="development">Development</option>
+                                <option value="staging">Staging</option>
+                                <option value="production">Production</option>
                                 <option value="archived">Archived</option>
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">

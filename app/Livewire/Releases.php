@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Release;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 
 class Releases extends Component
 {
@@ -13,6 +14,7 @@ class Releases extends Component
 
     public $status = 'Pending Approval';
 
+    #[Url]
     public $search = '';
     public $releaseId;
 
@@ -22,6 +24,7 @@ class Releases extends Component
 
     public function render()
     {
+
         $this->refreshData();
 
         return view('livewire.releases');
@@ -31,10 +34,18 @@ class Releases extends Component
     #[On('release-created')]
     public function refreshData(){
 
+        if($this->search === 'all') {
+
+            $this->releases = Release::all();
+
+        } else {
+
             $this->releases = Release::where('title', 'like', '%'.$this->search.'%')
                 ->orWhere('site', 'like', '%'.$this->search.'%')
                 ->orWhere('developer', 'like', '%'.$this->search.'%')
                 ->get();
+
+        }
     }
 
 
