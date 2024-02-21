@@ -81,7 +81,7 @@
                     </thead>
                     <tbody>
                         @foreach ($this->releases as $release)
-                            <tr
+                            <tr wire:transition
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -103,14 +103,16 @@
                                     {{ $release->site }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span
-                                        class="{{ $status === 'Approve' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }} text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                                        {{ $status }}
-                                    </span>
+                                <span class="bg-{{ $release->status === 'Approved' ? 'green' : 'red' }}-100 text-{{ $release->status === 'Approved' ? 'green' : 'red' }}-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-{{ $release->status === 'Approved' ? 'green' : 'red' }}-900 dark:text-{{ $release->status === 'Approved' ? 'green' : 'red' }}-300">
+                                    {{ $release->status }}
+                                </span>
+
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="#" wire:click.prevent="setStatus({{ $release->id }})"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Approve</a>
+                                <a href="#" wire:click.prevent="setStatus({{ $release->id }})" wire:confirm="Are you sure you want to Approve this?"
+                                    wire:loading.attr="disabled"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Approve</a>
+
                                 </td>
                             </tr>
                         @endforeach
