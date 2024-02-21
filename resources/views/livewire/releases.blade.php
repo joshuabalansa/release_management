@@ -8,34 +8,24 @@
             <div class="flex">
                 <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your
                     Email</label>
-                <button id="dropdown-button" data-dropdown-toggle="dropdown"
-                    class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
-                    type="button">All categories <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg></button>
-                <div id="dropdown"
-                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-                        <li>
-                            <button type="button"
-                                class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mockups</button>
-                        </li>
-                        <li>
-                            <button type="button"
-                                class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Templates</button>
-                        </li>
-                        <li>
-                            <button type="button"
-                                class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Design</button>
-                        </li>
-                        <li>
-                            <button type="button"
-                                class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logos</button>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="relative">
+                            <label for="environment" class="sr-only">Site</label>
+                            <select id="environment"  wire:model.live="search"
+                                    class="block w-full py-2.5 pl-4 pr-10 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg focus:outline-none focus:ring-4 focus:border-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:focus:border-gray-700 dark:text-white">
+                                <option value="">All Site</option>
+                                <option value="Development">Development</option>
+                                <option value="Staging">Staging</option>
+                                <option value="Production">Production</option>
+                                <option value="archived">Archived</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </div>
+
                 <div class="relative w-full mr-5 flex">
                     <input type="search" wire:model.live="search" id="search-dropdown"
                         class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
