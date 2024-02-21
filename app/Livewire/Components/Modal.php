@@ -3,10 +3,10 @@
 namespace App\Livewire\Components;
 
 use Livewire\Component;
-use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use App\Models\Release;
+use Illuminate\Support\Facades\Auth;
 
 class Modal extends Component
 {
@@ -21,6 +21,8 @@ class Modal extends Component
             $branch_link,
             $notes;
 
+    public $status = '';
+
     protected $rules = [
         'title'         => 'required',
         'developer'     => '',
@@ -29,8 +31,8 @@ class Modal extends Component
         'peer'          => 'required',
         'project_owner' => 'required',
         'branch_link'   => 'required',
-        'notes'         => 'required',
-        'status'        => 'in:Pending Approval',
+        'notes'         => '',
+        'status'        => '',
     ];
 
     public function render()
@@ -46,8 +48,6 @@ class Modal extends Component
     public function save() {
 
         $validator = $this->validate($this->rules);
- 
-        try {
  
          $release = new Release; 
  
@@ -74,14 +74,11 @@ class Modal extends Component
          $release->notes          = $validator['notes'];
   
          $release->save();
- 
+         
+         $this->dispatch('release-created'); 
+
          $this->resetInput();
  
-        } catch (\Exception $e) {
- 
-             dd($e->getMessage());
-        }
-        
      }
 
      public function resetInput() {
